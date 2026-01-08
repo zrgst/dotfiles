@@ -10,7 +10,7 @@ Systemet bruker `GNU Stow` for å håndtere symlinks og en modulær `source`-log
 
 ## Installasjon
 1. Installer nødvendige pakker: `stow`, `hyprland`, `waybar`, `fuzzel`, `swww`.
-2. Klone repoet: `git clone https://github.com/DITT_BRUKERNAVN/dotfiles.git ~/dotfiles`
+2. Klone repoet: `git clone https://github.com/zrgst/dotfiles.git ~/dotfiles`
 3. Gå til mappen: `cd ~/dotfiles`
 4. Bruk Stow: `stow hyprland waybar fuzzel`
 
