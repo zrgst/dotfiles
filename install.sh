@@ -3,41 +3,53 @@
 # Farger for penere output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+RED='\033[0;31m'
+NC='\033[0m'
 
 echo -e "${BLUE}Starter installasjon av zrgst's dotfiles...${NC}"
 
-# 1. Installer base-pakker (CachyOS/Arch)
-echo -e "${GREEN}Installerer systempakker...${NC}"
-sudo pacman -S --needed --noconfirm \
-    hyprland swww waybar fuzzel \
-    thunar gvfs-smb gvfs-dnssd avahi \
-    stow git tailscale brightnessctl \
-     otf-font-awesome papirus-icon-theme \
-    ghostty # eller din foretrukne terminal
+# 1. Finn AUR-hjelper
+if command -v paru &>/dev/null; then
+  AUR_HELPER="paru"
+elif command -v yay &>/dev/null; then
+  AUR_HELPER="yay"
+else
+  echo -e "${RED}Ingen AUR-hjelper funnet (paru/yay). Installerer paru først...${NC}"
+  sudo pacman -S --needed base-devel
+  git clone https://aur.archlinux.org/paru.git /tmp/paru
+  cd /tmp/paru && makepkg -si --noconfirm
+  AUR_HELPER="paru"
+  cd ~/dotfiles
+fi
 
-# 2. Spesifikk maskinvare-håndtering
+# 2. Installer systempakker (Pacman + AUR)
+echo -e "${GREEN}Installerer systempakker via $AUR_HELPER...${NC}"
+$AUR_HELPER -S --needed --noconfirm \
+  hyprland swww waybar fuzzel \
+  thunar gvfs-smb gvfs-dnssd avahi \
+  stow git tailscale brightnessctl \
+  ttf-golos-text otf-font-awesome papirus-icon-theme \
+  alacritty gnome-calendar
+
+# 3. Spesifikk maskinvare-håndtering
 echo -e "${BLUE}Er dette en laptop? (y/n)${NC}"
 read -r is_laptop
 
 if [ "$is_laptop" == "y" ]; then
-    echo -e "${GREEN}Installerer laptop-spesifikke pakker...${NC}"
-    sudo pacman -S --needed --noconfirm libva-intel-driver mesa
+  echo -e "${GREEN}Installerer laptop-spesifikke pakker...${NC}"
+  sudo pacman -S --needed --noconfirm libva-intel-driver mesa
 else
-    echo -e "${GREEN}Installerer desktop-spesifikke pakker (Nvidia)...${NC}"
-    sudo pacman -S --needed --noconfirm nvidia-utils nvidia-settings libva-nvidia-driver
+  echo -e "${GREEN}Installerer desktop-spesifikke pakker (Nvidia)...${NC}"
+  sudo pacman -S --needed --noconfirm nvidia-utils nvidia-settings libva-nvidia-driver
 fi
 
-# 3. Aktiver nødvendige tjenester
-echo -e "${GREEN}Aktiverer systemtjenester...${NC}"
+# 4. Aktiver tjenester
 sudo systemctl enable --now tailscaled
 sudo systemctl enable --now avahi-daemon
 
-# 4. Kjør GNU Stow
+# 5. Stow
 echo -e "${GREEN}Oppretter symlinks med GNU Stow...${NC}"
 cd ~/dotfiles
-stow hyprland
-stow waybar
-stow fuzzel
+stow hyprland waybar fuzzel
 
-echo -e "${BLUE}Installasjon ferdig! Husk å sjekke hyprland.conf for laptop/desktop-sources.${NC}"
+echo -e "${BLUE}Ferdig! Husk å oppdatere 'zrgst/' filene i hyprland.conf.${NC}"
