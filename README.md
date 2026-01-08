@@ -9,10 +9,12 @@ Systemet bruker `GNU Stow` for å håndtere symlinks og en modulær `source`-log
 - **Laptop:** Bruker Intel/Mesa-variabler, touchpad-støtte og strømsparingsfunksjoner.
 
 ## Installasjon
-1. Installer nødvendige pakker: `stow`, `hyprland`, `waybar`, `fuzzel`, `swww`.
+| Viktig! Du må manuelt installere 'morgen' via AUR selv, jeg har ikke lagt det
+inn i install-scriptet ennå.
+1. Installer nødvendige pakker: morgen (AUR)
 2. Klone repoet: `git clone https://github.com/zrgst/dotfiles.git ~/dotfiles`
 3. Gå til mappen: `cd ~/dotfiles`
-4. Bruk Stow: `stow hyprland waybar fuzzel`
+4. Kjør install.sh (installerer dependencies og kjører 'stow' på alle pakkene.)
 
 ## Bytte mellom Laptop og Desktop
 Åpne `~/.config/hypr/hyprland.conf` og kommenter inn/ut de relevante linjene under maskinspesifikk konfigurasjon:

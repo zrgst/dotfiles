@@ -13,8 +13,8 @@ sudo pacman -S --needed --noconfirm \
     hyprland swww waybar fuzzel \
     thunar gvfs-smb gvfs-dnssd avahi \
     stow git tailscale brightnessctl \
-    ttf-golos-text otf-font-awesome papirus-icon-theme \
-    alacritty # eller din foretrukne terminal
+     otf-font-awesome papirus-icon-theme \
+    ghostty # eller din foretrukne terminal
 
 # 2. Spesifikk maskinvare-håndtering
 echo -e "${BLUE}Er dette en laptop? (y/n)${NC}"
