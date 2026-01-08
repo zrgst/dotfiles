@@ -1,0 +1,48 @@
+{
+	"layer": "top",
+	"modules-left": ["hyprland/workspaces", "custom/launcher", "sway/mode"],
+	"modules-center": ["mpris"],
+	"modules-right": ["network", "pulseaudio", "temperature", "cpu", "memory", "clock"],
+	
+  "mpris": {
+      "player": "playerctld",  // velg automatisk aktiv spiller
+      "format": "{title} — {artist}",
+      "format-stopped": "󰝚",
+      "max-length": 50,
+      "on-click": "playerctl play-pause",
+      "on-scroll-up": "playerctl next",
+      "on-scroll-down": "playerctl previous"
+  },
+
+  "custom/launcher": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "walker-zrgst-menu"
+  },
+  "hyprland/workspaces": {
+      "all-outputs": false,
+      "format": "{name}",
+      "disable-scroll": false
+  },
+	"pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-icons": {
+			"default": ["  ", "  ", "  "]
+		}
+	},
+	"network": {
+		"tooltip": false,
+		"format-wifi": "  {essid} {ipaddr}",
+		"format-ethernet": "  {ipaddr}"
+	},
+	"cpu": {
+		"tooltip": false,
+		"format": "󰻠  {}%"
+	},
+	"memory": {
+		"tooltip": false,
+		"format": "󰍛  {}%"
+	}
+}

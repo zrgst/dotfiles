@@ -1,0 +1,110 @@
+@define-color foreground #e0e0e0;
+@define-color background #121212;
+@define-color border #e0e0e0;
+@define-color widget #0e0e0e;
+
+* {
+  background-color: transparent;
+  color: @foreground;
+
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'CaskaydiaMono Nerd Font Mono';
+  font-size: 14px;
+}
+
+#waybar {
+  background-color: @background;
+  color: @foreground;
+  margin: 0;
+  padding: 0;
+
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: @border;
+
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#custom-cmus {
+  color: @foreground;
+  padding: 0 15px;
+  font-weight: bold;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+#cpu,
+#battery,
+#pulseaudio,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#tray {
+  margin-right: 16px;
+}
+
+#bluetooth {
+  margin-right: 17px;
+}
+
+#network {
+  margin-right: 13px;
+}
+
+#custom-expand-icon {
+  margin-right: 20px;
+}
+
+tooltip {
+  padding: 2px;
+  background-color: @background;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #7aa87c;
+  border-radius: 8;
+}
+
+#custom-update {
+  font-size: 12px;
+}
+
+#clock {
+  margin-left: 8.75px;
+  color: @foreground;
+  font-family: 'CaskaydiaMono Nerd Font Mono';
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin-left: 8.75px;
+  font-size: 12px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
