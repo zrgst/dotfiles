@@ -1,3 +1,32 @@
-Legge til Scriptene mine i dotfiles.
-	Mulig at disse bør flyttes til .local/bin/ så de er samlet.
+- Verifiser at alle nødvendige pakker er med i install.sh
 
+- Verifiser at alle pakker i scriptet faktisk finnes. Prioriter arch packages
+	over AUR.
+
+- Sjekk hvordan vi starter btop i kitty likt som vi gjorde i ghostty. sjekke
+  deafults.conf for referanse.
+
+- Sjekk om vi kan bruke den nye launcheren som clipboard-browser. (som walker
+  kan)
+
+- Hvis ikke sjekk om vi må ha elephant for å bruke walker til BARE clipboard.
+  ikke launcher.
+
+- Gå gjennom alle filer og sjekk at vi bruker samme font og sørg for at vi
+	har den med i install.sh.
+
+- Skriv om resterende meny-script til å bruke fuzzel i stedet for walker.
+	(Sjekk også om det kan lønne seg å bytte til alternativ meny med ett
+	script, en .txt fil med valgene. Så man kan bruke samme script med flere launchere.
+
+- Finn ut hvorfor "1" tallet på workspace feltet i waybar ikke endrer seg når
+  man bytter workspace.
+
+- Endre på scratchpad til cmus så det kjører i kitty i stedet for ghostty. (kan
+  	dette gjøres via defults.conf?)
+
+- Legg til cmus i installasjonsscriptet og flytt over config og theme.
+	( Finn også et theme som passer bedre i fargene enn det vi har)
+
+- Når alle punktene er fullført er vi klar til å kjøre en test på laptopen. Hvis
+  det fungerer her så er jeg klar til å installere arch på hoved-PCen.

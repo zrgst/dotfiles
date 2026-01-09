@@ -25,11 +25,13 @@ fi
 # 2. Installer systempakker (Pacman + AUR)
 echo -e "${GREEN}Installerer systempakker via $AUR_HELPER...${NC}"
 $AUR_HELPER -S --needed --noconfirm \
-  hyprland swww waybar fuzzel \
+  hyprland zen-browser-bin waybar fuzzel \
   thunar gvfs-smb gvfs-dnssd avahi \
-  stow git tailscale brightnessctl \
+  stow git tailscale-git brightnessctl-git \
   ttf-golos-text otf-font-awesome papirus-icon-theme \
-  btop gnome-calendar ghostty
+  btop gnome-calendar kitty vesktop \
+  grim-git slurp-git feh-git grimblast-git \
+  cmus
 
 # 3. Spesifikk maskinvare-håndtering
 echo -e "${BLUE}Er dette en laptop? (y/n)${NC}"
@@ -50,6 +52,6 @@ sudo systemctl enable --now avahi-daemon
 # 5. Stow
 echo -e "${GREEN}Oppretter symlinks med GNU Stow...${NC}"
 cd ~/dotfiles
-stow hyprland waybar fuzzel
+stow hyprland waybar fuzzel zrgst
 
 echo -e "${BLUE}Ferdig! Husk å oppdatere 'zrgst/' filene i hyprland.conf.${NC}"
