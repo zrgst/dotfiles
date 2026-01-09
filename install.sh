@@ -27,11 +27,12 @@ echo -e "${GREEN}Installerer systempakker via $AUR_HELPER...${NC}"
 $AUR_HELPER -S --needed --noconfirm \
   hyprland zen-browser-bin waybar fuzzel \
   thunar gvfs-smb gvfs-dnssd avahi \
-  stow git tailscale-git brightnessctl-git \
+  stow git tailscale brightnessctl \
   ttf-golos-text otf-font-awesome papirus-icon-theme \
-  btop gnome-calendar kitty vesktop \
+  btop cmus-git morgen-bin kitty vesktop \
   grim-git slurp-git feh-git grimblast-git \
-  cmus
+  cliphist wl-clipboard polkit-kde-agent mako \
+  blueman
 
 # 3. Spesifikk maskinvare-håndtering
 echo -e "${BLUE}Er dette en laptop? (y/n)${NC}"

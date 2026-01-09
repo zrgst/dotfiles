@@ -1,0 +1,5 @@
+# ~/dotfiles/.stow-local-ignore
+README.md
+install.sh
+.git
+
