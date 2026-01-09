@@ -53,6 +53,7 @@ sudo systemctl enable --now avahi-daemon
 # 5. Stow
 echo -e "${GREEN}Oppretter symlinks med GNU Stow...${NC}"
 cd ~/dotfiles
-stow hyprland waybar fuzzel zrgst
+stow alacritty cmus fish fuzzel ghostty hyprland
+stow kitty mako nvim terminal waybar zrgst
 
 echo -e "${BLUE}Ferdig! Husk å oppdatere 'zrgst/' filene i hyprland.conf.${NC}"
