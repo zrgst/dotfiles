@@ -29,20 +29,9 @@ source = ~/.config/hypr/zrgst/env_laptop.conf
 
 ## ToDo:
 
-- Verifiser at alle nødvendige pakker er med i install.sh
-- Verifiser navn på alle pakker. Prioriter arch pakker over AUR
-- Sjekk hvrodan starte btop i kitty direkte.
-- Sjekk om fuzzle kan brukes som clipboard-manager (som walker kan)
-  - Hvis ikke legg inn walker som dependencies. (uten elephant??)
 - Gå gjennom alle filer og sjekk at riktig font er brukt.
-  - Sørg for at Font er med i dependencies.
 - Skriv om resterende meny-script så de kan brukes med fuzzel
-- Sjekk om meny script skal gå over til annen metode (med .txt fil )
-- Feilsøk hvorfor ikke workspaces på waybar endrer seg etter hvilket workpsace vi er på.
-- Endre scratchpad "cmus" til å bruke kitty.
-- Finn et mer passende theme til cmus.
-- Legg Cmus config inn i dotfiles.
-- Legge til en brannmur også? ufw? kjekt å ha.
 
-- Når alt dette er gjort er jeg klar til å teste det ut live på laptopen min.
-- Reinstall av main-PC gjøres når dotfiles er ferdig.
+
+# Font:
+JetBrainsMono Nerd Font

@@ -28,7 +28,7 @@ $AUR_HELPER -S --needed --noconfirm \
   hyprland zen-browser-bin waybar fuzzel \
   thunar gvfs-smb gvfs-dnssd avahi \
   stow git tailscale brightnessctl \
-  ttf-golos-text otf-font-awesome papirus-icon-theme \
+  ttf-jetbrains-mono papirus-icon-theme \
   btop cmus-git morgen-bin kitty vesktop \
   grim-git slurp-git feh-git grimblast-git \
   cliphist wl-clipboard polkit-kde-agent mako \
