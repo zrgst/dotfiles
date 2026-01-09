@@ -29,7 +29,7 @@ $AUR_HELPER -S --needed --noconfirm \
   thunar gvfs-smb gvfs-dnssd avahi \
   stow git tailscale brightnessctl \
   ttf-golos-text otf-font-awesome papirus-icon-theme \
-  alacritty gnome-calendar
+  btop gnome-calendar ghostty
 
 # 3. Spesifikk maskinvare-håndtering
 echo -e "${BLUE}Er dette en laptop? (y/n)${NC}"
