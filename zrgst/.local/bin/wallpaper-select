@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/.local/share/zrgst/wallpapers"
+
+WALL=$(find "$DIR" -type f \
+  | sed "s|$DIR/||" \
+  | walker --dmenu --placeholder "Select wallpaper")
+
+[ -z "$WALL" ] && exit 0
+
+feh --no-fehbg --bg-fill "$DIR/$WALL"
+

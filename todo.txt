@@ -1,4 +1,3 @@
-Legge til btop i script.
 Legge til Scriptene mine i dotfiles.
 	Mulig at disse bør flyttes til .local/bin/ så de er samlet.
 

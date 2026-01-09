@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/.local/share/zrgst/wallpapers"
+
+WALL=$(find "$DIR" -type f | shuf -n 1)
+
+[ -n "$WALL" ] && feh --no-fehbg --bg-fill "$WALL"
