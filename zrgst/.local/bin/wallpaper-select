@@ -2,11 +2,12 @@
 
 DIR="$HOME/.local/share/zrgst/wallpapers"
 
-WALL=$(find "$DIR" -type f \
-  | sed "s|$DIR/||" \
-  | walker --dmenu --placeholder "Select wallpaper")
+# Lister opp filnavneme i fuzzel
+SELECTED=$(ls "$DIR" | fuzzel --dmenu -p "󰸉 Wallpaper: " -l 10)
 
-[ -z "$WALL" ] && exit 0
+if [ -n "$SELECTED" ]; then
+	# Sjekk daemon
+	pgrep -x "swww-daemon" > /dev/null || swww-init
 
-feh --no-fehbg --bg-fill "$DIR/$WALL"
-
+	swww img "$DIR/$SELECTED" --transition-type wipe --transition-duration 2
+fi
