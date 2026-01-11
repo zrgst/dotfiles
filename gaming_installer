@@ -6,69 +6,211 @@
 ##  MED HYPRLAND                              ##
 ################################################
 
-# Farger for litt mer hyggelig opplevelse
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-RED='\033[0;31m'
-NC='\033[0m'
+# --- Farge-definisjoner ---
+
+# Nullstill (Reset)
+NC='\e[0m'       # No Color - Bruk denne alltid til slutt!
+
+# Vanlige farger
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+YELLOW='\e[0;33m'
+BLUE='\e[0;34m'
+PURPLE='\e[0;35m'
+CYAN='\e[0;36m'
+WHITE='\e[0;37m'
+
+# Fete farger (Bold)
+BRED='\e[1;31m'
+BGREEN='\e[1;32m'
+BYELLOW='\e[1;33m'
+BBLUE='\e[1;34m'
+BPURPLE='\e[1;35m'
+BCYAN='\e[1;36m'
+BWHITE='\e[1;37m'
+
+# Bakgrunnsfarger
+BG_RED='\e[41m'
+BG_GREEN='\e[42m'
+BG_YELLOW='\e[43m'
+BG_BLUE='\e[44m'
+
+# Funksjon for pene overskrifter
+print_header() {
+    local tekst="$1"
+    echo -e "\n${BCYAN}==========================================${NC}"
+    echo -e "${BCYAN}  ${BWHITE}$tekst${NC}"
+    echo -e "${BCYAN}==========================================${NC}"
+}
+
+# Funksjon for statusmeldinger
+print_status() {
+    echo -e "${BYELLOW}[WAIT]${NC} $1..."
+}
+
+print_success() {
+    echo -e "${BGREEN}[ OK ]${NC} $1"
+}
+
+print_error() {
+    echo -e "${BRED}[FAIL]${NC} $1"
+}
+
+# Funksjon for spørsmål
+ask_question() {
+    # 1. Bruk doble hermetegn rundt "$1" for å håndtere mellomrom
+    local sporsmal="$1"
+    
+    # 2. Bruk printf for å bygge prompten sikkert
+    # Vi bruker %s for strengen for å unngå "bad substitution"
+    local prompt
+    prompt=$(printf "${BYELLOW}>> %s (y/n): ${NC}" "$sporsmal")
+    
+    # 3. Bruk -r i read (best practice) og svar-variabelen
+    read -p "$prompt" svar
+    
+    # 4. Send svaret ut slik at det kan fanges opp
+    echo "$svar"
+}
 
 # Fellespakker som  brukes på begge systemer
 COMMON_PKGS="gamemode mangohud gamescope proton-ge-custom-bin wine-staging"
+OPTIONAL_PACKAGES=""
 
-echo -e "${RED}DETTE ER EN TESTVERSJON!"
-echo -e "${RED}DETTE ER EN TESTVERSJON!"
-echo -e "${RED}DETTE ER EN TESTVERSJON!"
-echo -e "${RED}DETTE ER EN TESTVERSJON!"
-echo -e "${RED}DETTE ER EN TESTVERSJON!"
+cat zrgst.txt
+
+echo -e " "
+echo -e "${RED}DETTE ER EN TESTVERSJON!${NC}"
+echo -e "DETTE ER EN TESTVERSJON!"
+echo -e "${BLUE}DETTE ER EN TESTVERSJON!${NC}"
+echo -e "DETTE ER EN TESTVERSJON!"
+echo -e "${RED}DETTE ER EN TESTVERSJON!${NC}\n\n"
 
 
 # 1. Spør brukeren om han er på nvidia eller amd
-echo -e "${BLUE}Velkommen til Zrgst sitt installasjonnscript for gaming-pakker!"
-read -p "${BLUE}Kjører du på Nvidia-masinvare? (y/n): " choice
+print_header "Gaming installer by Zrgst"
+echo ""
+choice=$(ask_question "Kjører du på Nvidia-masinvare?: ")
 
 case "$choice" in
 	y|Y )
 		if [ -f "nvidia_packages.txt" ]; then
-			GPU_PKGS=$( cat nvisia_packages.txt )
-			echo "Optimaliserer for Nvidia..."
+			GPU_PKGS=$( cat nvidia_packages.txt )
+			print_status "Optimaliserer for Nvidia..."
+			sleep 2
 		else
-			echo "${RED}FEIL!: nvidia_packages.txt ble ikke funnet!"
+			print_error "FEIL! nvidia_packages.txt ble ikke funnet!\n"
 			exit 1
 		fi
 		;;
 	n|N )
 		if [ -f "amd_packages.txt" ]; then
 			GPU_PKGS=$(cat amd_packages.txt )
-			echo "Optimasliserer for AMD"
+			print_status "Optimasliserer for AMD"
+			sleep 2
 		else
-			echo "${RED}Feil! amd_packages.txt ble ikke funnet!"
+			print_error "Feil amd_packages.txt ble ikke funnet!"
 			exit 1
 		fi
 		;;
 	* )
-		echo "${RED}Ugyldig valg. Avbryter!"
+		print_error "Ugyldig valg. Avbryter!"
 		exit 1
 		;;
 esac
 
+# 2. Spør brukeren om han vil inkludere valgfrie pakker (med liste)
+#    Disse pakkene blir lagt inn i COMMON_PACKAGES variabelen.
+##### --- VESKTOP --- #####
+svar=$(ask_question "Vil du inkludere Vesktop (Discord klient)?: ")
+case "$svar" in
+	y|Y )
+		print_status "Legger til Vesltop i listen..."
+		sleep 1
+		OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} vesktop"
+		print_success "Vesktop lagt til."
+		print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
+		;;
+	* )
+		print_success "Vi hopper over Discord-klienten..."
+		;;
+esac
 
-echo -e "${BLUE}Starter installasjon av Zrgst's utvalgte gaming pakker...${NC}"
-echo -e "${BLUE}Leter etter AUR-hjelper...${NC}"
+##### --- STEAM --- #####
+svar=$(ask_question "Vil du inkludere Steam?: ")
+case "$svar" in
+        y|Y )
+                OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} steam"
+		print_status "Legger til Steam i listen."
+		sleep 0.5
+                print_success "Steam lag til."
+                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
+                ;;
+        * )
+                print_success "Vi hopper over Steam..."
+                ;;
+esac
 
-# 2. Finn AUR-hjelper
+##### --- LUTRIS --- #####
+svar=$(ask_question "Vil du inkludere Lutris (Game Launcher)?: ")
+case "$svar" in
+        y|Y )
+                OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} lutris"
+                print_status "Legger til Lutris i listen."
+		sleep 0.5
+                print_success "Lutris er lagt til."
+                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
+                ;;
+        * )
+                print_success "Vi hopper over Lutris..."
+                ;;
+esac
+
+##### --- PRISM --- #####
+svar=$(ask_question "Vil du inkludere Prism (Minecraft klient for linux)?")
+case "$svar" in
+        y|Y )
+                OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} prism"
+                print_status "Legger til Lutris i listen"
+		sleep 0.5
+                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
+                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
+                ;;
+        * )
+                print_success "Vi hopper over Minecraft!"
+                ;;
+esac
+
+
+if [ -d /proc/acpi/button/lid ]; then
+	print_status "Laptop detektert - legger til strømsparingsverktøy..."
+	GPU_PKGS="$GPU_PKGS auto_cpufreq supergfxctl"
+	sleep 2
+	print_success " Strømsparingsverktøy lagt til i listen."
+fi
+
+
+print_header "Starter installasjon av Zrgst's utvalgte gaming pakker..."
+echo ""
+print_status "Leter etter AUR-hjelper..."
+sleep 3
+# 3. Finn AUR-hjelper
 if command -v paru &>/dev/null; then
 	AUR_HELPER="paru"
-	echo -e "${GREEN}Paru funnet! Går videre til installasjon!"
+	print_success "'Paru' funnet! Går videre til installasjon!"
 elif command -v yay &>/dev/null; then
 	AUR_HELPER="yay"
-	echo -e "${GREEN}Yay funnet! Går videre til installasjon!"
+	print_success "'Yay' funnet! Går videre til installasjon!\n"
 else
-	echo -e "${RED}Ingen AUR-hjelper funnet (paru/yay). Installerer paru først...${NC}"
+	print_status "Ingen AUR-hjelper funnet (paru/yay). Installerer paru først..."
 	sudo pacman -S --needed base-devel
 	git clone https://aur.archlinux.org/paru.git /tmp/paru
 	cd /tmp/paru && makepkg -si --noconfirm
 	AUR_HELPER="paru"
 	cd $HOME
-	echo -e "${GREEN}Paru installert! Fortsetter installasjonen..."
+	print_success "Paru installert! Fortsetter installasjonen..."
 fi
+
+# 4. Installering av pakker
+print_header "Starter installasjon..."
 
