@@ -38,9 +38,9 @@ BG_BLUE='\e[44m'
 # Funksjon for pene overskrifter
 print_header() {
     local tekst="$1"
-    echo -e "\n${BCYAN}==========================================${NC}"
+    echo -e "\n${BCYAN}========================================================================${NC}"
     echo -e "${BCYAN}  ${BWHITE}$tekst${NC}"
-    echo -e "${BCYAN}==========================================${NC}"
+    echo -e "${BCYAN}========================================================================${NC}"
 }
 
 # Funksjon for statusmeldinger
@@ -77,7 +77,9 @@ ask_question() {
 COMMON_PKGS="gamemode mangohud gamescope proton-ge-custom-bin wine-staging"
 OPTIONAL_PACKAGES=""
 
+echo -ne "${YELLOW}"
 cat zrgst.txt
+echo -ne "${NC}"
 
 echo -e " "
 echo -e "${RED}DETTE ER EN TESTVERSJON!${NC}"
@@ -122,17 +124,14 @@ esac
 # 2. Spør brukeren om han vil inkludere valgfrie pakker (med liste)
 #    Disse pakkene blir lagt inn i COMMON_PACKAGES variabelen.
 ##### --- VESKTOP --- #####
+print_header "Valg av tilleggspakker."
+sleep 0.5
 svar=$(ask_question "Vil du inkludere Vesktop (Discord klient)?: ")
 case "$svar" in
 	y|Y )
-		print_status "Legger til Vesltop i listen..."
-		sleep 1
 		OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} vesktop"
-		print_success "Vesktop lagt til."
-		print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
 		;;
 	* )
-		print_success "Vi hopper over Discord-klienten..."
 		;;
 esac
 
@@ -141,13 +140,8 @@ svar=$(ask_question "Vil du inkludere Steam?: ")
 case "$svar" in
         y|Y )
                 OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} steam"
-		print_status "Legger til Steam i listen."
-		sleep 0.5
-                print_success "Steam lag til."
-                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
                 ;;
         * )
-                print_success "Vi hopper over Steam..."
                 ;;
 esac
 
@@ -156,13 +150,8 @@ svar=$(ask_question "Vil du inkludere Lutris (Game Launcher)?: ")
 case "$svar" in
         y|Y )
                 OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} lutris"
-                print_status "Legger til Lutris i listen."
-		sleep 0.5
-                print_success "Lutris er lagt til."
-                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
                 ;;
         * )
-                print_success "Vi hopper over Lutris..."
                 ;;
 esac
 
@@ -171,13 +160,8 @@ svar=$(ask_question "Vil du inkludere Prism (Minecraft klient for linux)?")
 case "$svar" in
         y|Y )
                 OPTIONAL_PACKAGES="${OPTIONAL_PACKAGES} prism"
-                print_status "Legger til Lutris i listen"
-		sleep 0.5
-                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
-                print_success "Du har valgt: ${OPTIONAL_PACKAGES}"
                 ;;
         * )
-                print_success "Vi hopper over Minecraft!"
                 ;;
 esac
 
@@ -189,11 +173,20 @@ if [ -d /proc/acpi/button/lid ]; then
 	print_success " Strømsparingsverktøy lagt til i listen."
 fi
 
+print_status "Konfigurerer systemet"
+print_status "Laptop detektert! Strømsparingsverktøy lagt til i listen."
+for i in {1..3}; do
+    echo -n "."
+    sleep 0.5
+done
 
+echo -e " ${GREEN}Fullført!${NC}"
+sleep 1
+echo ""
 print_header "Starter installasjon av Zrgst's utvalgte gaming pakker..."
 echo ""
 print_status "Leter etter AUR-hjelper..."
-sleep 3
+sleep 2
 # 3. Finn AUR-hjelper
 if command -v paru &>/dev/null; then
 	AUR_HELPER="paru"
