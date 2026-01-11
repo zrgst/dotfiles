@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+################################################
+##  INSTALLASJONSSKRIPT FOR INSTALLASJON      ##
+##  AV GAMING RELATERTE PAKKER I ARCH LINUX   ##
+##  MED HYPRLAND                              ##
+################################################
+
+# Farger for litt mer hyggelig opplevelse
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Fellespakker som  brukes på begge systemer
+COMMON_PKGS="gamemode mangohud gamescope proton-ge-custom-bin wine-staging"
+
+echo -e "${RED}DETTE ER EN TESTVERSJON!"
+echo -e "${RED}DETTE ER EN TESTVERSJON!"
+echo -e "${RED}DETTE ER EN TESTVERSJON!"
+echo -e "${RED}DETTE ER EN TESTVERSJON!"
+echo -e "${RED}DETTE ER EN TESTVERSJON!"
+
+
+# 1. Spør brukeren om han er på nvidia eller amd
+echo -e "${BLUE}Velkommen til Zrgst sitt installasjonnscript for gaming-pakker!"
+read -p "${BLUE}Kjører du på Nvidia-masinvare? (y/n): " choice
+
+case "$choice" in
+	y|Y )
+		if [ -f "nvidia_packages.txt" ]; then
+			GPU_PKGS=$( cat nvisia_packages.txt )
+			echo "Optimaliserer for Nvidia..."
+		else
+			echo "${RED}FEIL!: nvidia_packages.txt ble ikke funnet!"
+			exit 1
+		fi
+		;;
+	n|N )
+		if [ -f "amd_packages.txt" ]; then
+			GPU_PKGS=$(cat amd_packages.txt )
+			echo "Optimasliserer for AMD"
+		else
+			echo "${RED}Feil! amd_packages.txt ble ikke funnet!"
+			exit 1
+		fi
+		;;
+	* )
+		echo "${RED}Ugyldig valg. Avbryter!"
+		exit 1
+		;;
+esac
+
+
+echo -e "${BLUE}Starter installasjon av Zrgst's utvalgte gaming pakker...${NC}"
+echo -e "${BLUE}Leter etter AUR-hjelper...${NC}"
+
+# 2. Finn AUR-hjelper
+if command -v paru &>/dev/null; then
+	AUR_HELPER="paru"
+	echo -e "${GREEN}Paru funnet! Går videre til installasjon!"
+elif command -v yay &>/dev/null; then
+	AUR_HELPER="yay"
+	echo -e "${GREEN}Yay funnet! Går videre til installasjon!"
+else
+	echo -e "${RED}Ingen AUR-hjelper funnet (paru/yay). Installerer paru først...${NC}"
+	sudo pacman -S --needed base-devel
+	git clone https://aur.archlinux.org/paru.git /tmp/paru
+	cd /tmp/paru && makepkg -si --noconfirm
+	AUR_HELPER="paru"
+	cd $HOME
+	echo -e "${GREEN}Paru installert! Fortsetter installasjonen..."
+fi
+

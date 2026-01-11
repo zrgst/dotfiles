@@ -1,0 +1,5 @@
+vulkan-radeon
+lib32-vulkan-radeon
+libva-mesa-driver
+lact
+amdgpu_top
