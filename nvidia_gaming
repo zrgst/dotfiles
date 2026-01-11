@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+################################################
+##  INSTALLASJONSSKRIPT FOR INSTALLASJON      ##
+##  AV GAMING RELATERTE PAKKER I ARCH LINUX   ##
+##  MED HYPRLAND                              ##
+################################################
+
+# Farger for litt mer hyggelig opplevelse
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${BLUE}Starter installasjon av Zrgst's utvalgte gaming pakker...${NC}"
+
+# 1. Finn AUR-hjelper
+if command -v paru &>/dev/null; then
+	AUR_HELPER="paru"
+	echo -e "${GREEN}Paru funnet!"
+elif command -v yay &>/dev/null; then
+	AUR_HELPER="yay"
+	echo -e "${GREEN}Yay funnet!"
+else
+	echo -e "${RED}Ingen AUR-hjelper funnet (paru/yay). Installerer paru først...${NC}"
+	sudo pacman -S --needed base-devel
+	git clone https://aur.archlinux.org/paru.git /tmp/paru
+	cd /tmp/paru && makepkg -si --noconfirm
+	AUR_HELPER="paru"
+	cd $HOME
+	echo -e "${GREEN}Paru installert!"
+fi
+
