@@ -32,7 +32,7 @@ $AUR_HELPER -S --needed --noconfirm \
   btop cmus-git morgen-bin kitty vesktop \
   grim-git slurp-git feh-git grimblast-git \
   cliphist wl-clipboard polkit-kde-agent mako \
-  blueman
+  blueman nwg-look adwaita-icon-theme
 
 # 3. Spesifikk maskinvare-håndtering
 echo -e "${BLUE}Er dette en laptop? (y/n)${NC}"
