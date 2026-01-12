@@ -1,4 +1,12 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
-vim.g.omarchy_ash_transparent = true
+local opt = vim.opt
+
+-- Grunnleggende koding-instillinger
+opt.relativenumber = true -- Relative linjenummer
+opt.number = true -- Vanlige linjenummer
+opt.shiftwidth = 4 -- Tab-størrelse 4
+opt.expandtab = true -- Bruk mellomrom i stedet for tab
+opt.tabstop = 4
+opt.mouse = "a" -- Tillat mus (nyttig på laptop)
+
+-- Dette trengs for at farger skal vises riktig
+opt.termguicolors = true
