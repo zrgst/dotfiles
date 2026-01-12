@@ -1,4 +1,3 @@
-# Catppuccin Mocha Mako Config
 max-history=100
 sort=-time
 
@@ -19,9 +18,9 @@ text-color=#cdd6f4
 border-color=#89b4fa
 progress-color=over #313244
 
-# Tidsavbrudd (30 sekunder)
+# Tidsavbrudd (30 sekunder i millisekunder)
 default-timeout=30000
 
 [urgency=high]
 border-color=#f38ba8
-default-timeout=0 # Viktige varsler blir stående til de lukkes
+default-timeout=0
