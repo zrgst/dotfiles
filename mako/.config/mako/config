@@ -15,7 +15,7 @@ max-icon-size=64
 # Farger (Catppuccin Mocha)
 background-color=#1e1e2e
 text-color=#cdd6f4
-border-color=#89b4fa
+border-color=#94e2d5
 progress-color=over #313244
 
 # Tidsavbrudd (30 sekunder i millisekunder)
