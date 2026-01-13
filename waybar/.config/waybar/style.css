@@ -27,6 +27,21 @@ window#waybar {
   color: #33ccff;
   border-bottom: 2px solid #33ccff;
 }
+#tray {
+    background-color: #313244; /* Surface0 i Mocha */
+    border-radius: 10px;
+    margin: 4px;
+    padding: 0 10px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #f38ba8; /* Maroon/Red for oppmerksomhet */
+}
 
 #cpu,
 #battery,
