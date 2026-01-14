@@ -11,7 +11,9 @@ Systemet bruker `GNU Stow` for å håndtere symlinks og en modulær `source`-log
 ## Installasjon
 1. Klone repoet: `git clone https://github.com/zrgst/dotfiles.git ~/dotfiles`
 2. Gå til mappen: `cd ~/dotfiles`
-3. Kjør install.sh (installerer dependencies og kjører 'stow' på alle pakkene.)
+3. Rediger "packages.sh" med din favoritt editor (vim) for å lege til egne pakker som du
+vil ha. Ikke fjern pakker derfra, da mange kreves for at resterende config og keybinds skal fungere.
+4. Kjør install.sh (installerer dependencies og kjører 'stow' på alle pakkene.)
 
 ## Bytte mellom Laptop og Desktop
 Åpne `~/.config/hypr/hyprland.conf` og kommenter inn/ut de relevante linjene under maskinspesifikk konfigurasjon:

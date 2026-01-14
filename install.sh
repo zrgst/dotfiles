@@ -25,16 +25,23 @@ fi
 # 2. Installer systempakker (Pacman + AUR)
 echo -e "${GREEN}Installerer systempakker via $AUR_HELPER...${NC}"
 $AUR_HELPER -S --needed --noconfirm \
-  hyprland zen-browser-bin waybar fuzzel \
+  hyprland waybar fuzzel kitty \
   thunar gvfs-smb gvfs-dnssd avahi \
-  stow git tailscale brightnessctl \
-  ttf-jetbrains-mono papirus-icon-theme \
-  btop cmus-git morgen-bin kitty vesktop \
-  grim-git slurp-git feh-git grimblast-git \
+  stow git brightnessctl btop swww\
+  ttf-jetbrains-mono-nerd papirus-icon-theme \
+  grim-git slurp-git grimblast-git \
   cliphist wl-clipboard polkit-kde-agent mako \
   blueman adwaita-icon-theme arc-gtk-theme \
-  papirus-icon-theme xdg-desktop-portal-hyprland \
+  xdg-desktop-portal-hyprland \
   xdg-desktop-portal-gtk
+
+# Installerer software (AUR-helper)
+$AUR_HELPER -S --needed --noconfirm \
+	zen-browser-bin tailscale cmus-git \
+	morgen-bin vesktop carburetor
+
+
+
 
 # 3. Spesifikk maskinvare-håndtering
 echo -e "${BLUE}Er dette en laptop? (y/n)${NC}"
