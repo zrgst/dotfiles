@@ -28,10 +28,11 @@ window#waybar {
   border-bottom: 2px solid #33ccff;
 }
 #tray {
-    background-color: #313244; /* Surface0 i Mocha */
+    background-color: #7f849c;
     border-radius: 10px;
     margin: 4px;
-    padding: 0 10px;
+    padding: 2 8px;
+    margin-bottom: 6px;
 }
 
 #tray > .passive {
