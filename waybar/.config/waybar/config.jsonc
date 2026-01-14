@@ -110,7 +110,7 @@
     "return-type": "plain-text"
   },
   "custom/tailscale": {
-    "exec": "tailscale status | grep -q 'Active' && echo '󰖂 TS' || echo '󰖂 Off'",
+    "exec": "ip addr show tailscale0 > /dev/null 2>&1 && echo '󰖂 TS' || echo '󰖂 Off'",
     "interval": 10,
     "format": "{}",
     "tooltip": false
