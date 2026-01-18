@@ -49,3 +49,4 @@ window-padding-x = 2
 # resize-overlay-duration = 4s 200ms
 # login-shell = false
 theme = iTerm2 Default
+background-opacity = 0.7
