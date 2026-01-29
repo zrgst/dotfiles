@@ -57,7 +57,7 @@
   "clock": {
     "format": "{:L%A  |  %H:%M}",
     "format-alt": "{:L%d %B | W%V %Y}",
-    "on-click-right": "morgen"
+    "on-click-right": "ghostty --class calendar_popup -e khal interactive"
   },
 
   "network": {
