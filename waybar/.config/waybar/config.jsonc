@@ -57,7 +57,7 @@
   "clock": {
     "format": "{:L%A  |  %H:%M}",
     "format-alt": "{:L%d %B | W%V %Y}",
-    "on-click-right": "ghostty --title=\"calendar-popup\" -e \"khal interactive\""
+    "on-click-right": "/usr/bin/ghostty --title=\"calendar-popup\" -e \"/usr/bin/khal interactive\""
   },
 
   "network": {
