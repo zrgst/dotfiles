@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# adding paths in case waybar acts retarded
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin
+
+# Start khal interactive
+# Using 'exec' so the command takes over the terminal
+exec /usr/bin/khal interactive
