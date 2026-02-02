@@ -57,7 +57,7 @@
   "clock": {
     "format": "{:L%A  |  %H:%M}",
     "format-alt": "{:L%d %B | W%V %Y}",
-    "on-click-right": "sh -c 'ghostty --title=calendar-popup -e /home/zrgst/.local/bin/calendar-launch'"
+    "on-click-right": "chromium --app=https://calendar.google.com/calendar/u/0/r --class=google-calendar"
   },
 
   "network": {
