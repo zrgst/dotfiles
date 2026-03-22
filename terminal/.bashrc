@@ -46,24 +46,34 @@ fi
 
 # ----- Your own aliases / functions -----
 # Move any aliases you like from zsh:
-# alias gs='git status'
+alias gs='git status'
 alias ..='cd ..'
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 alias ls="ls --color"
 alias c="clear"
-alias bilde='swayimg'
-alias bilder="swayimg ."
+alias bilde='feh -z'
+alias bilder="feh ."
+alias musikk="ncmpcpp"
+alias oppdater-musikk="mpc update"
+# Emacs
+# dotfiles mappe
+alias dotfiles='emacsclient -c -a "" ~/dotfiles'
+# Scripts mappe
+alias scripts='emacsclient -c -a "" ~/scripts'
+# åpne hva som helst
+alias e='emacsclient -c -a ""'
+# åpne i terminal
+alias et='emacsclient -t -a ""'
+
+
 # Case-insensitive tab completion
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 bind 'set show-all-if-unmodified on'
-alias finalrecon="docker run -it --rm --name finalrecon  --entrypoint 'python3' thewhiteh4t/finalrecon finalrecon.py"
+#alias finalrecon="docker run -it --rm --name finalrecon  --entrypoint 'python3' thewhiteh4t/finalrecon finalrecon.py"
+
 # Legger til min lokale bin-mappe i PATH
-
-# Starter bibel-appen min
-#biblefetch
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
