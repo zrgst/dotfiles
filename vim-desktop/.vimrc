@@ -13,12 +13,12 @@ set nocompatible
 filetype plugin indent on
 syntax on
 
-" Tab og Indent (4 spaces)
-set tabstop=4       " Vis eksisterende tabs som 4 spaces
-set shiftwidth=4    " Størrelse på automatisk indent
+" Tab og Indent (2 spaces)
+set tabstop=2       " Vis eksisterende tabs som 2 spaces
+set shiftwidth=2    " Størrelse på automatisk indent
 set expandtab       " Gjør tabs om til spaces
-set softtabstop=4   " Gjør at 'backspace' sletter 4 spaces
-autocmd FileType sh setlocal expandtab shiftwidth=4 tabstop=4
+set softtabstop=2   " Gjør at 'backspace' sletter 2 spaces
+autocmd FileType sh setlocal expandtab shiftwidth=2 tabstop=2
 
 " Behold standard farger
 colorscheme default

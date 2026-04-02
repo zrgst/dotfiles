@@ -56,6 +56,10 @@ alias bilde='feh -z'
 alias bilder="feh ."
 alias musikk="ncmpcpp"
 alias oppdater-musikk="mpc update"
+alias torrent='tremc'
+alias torrent-stop='pkill transmission-daemon'
+alias torrent-start='transmission-daemon'
+alias mixer='alsamixer'
 # Emacs
 # dotfiles mappe
 alias dotfiles='emacsclient -c -a "" ~/dotfiles'
