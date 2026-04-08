@@ -58,6 +58,10 @@ alias musikk="ncmpcpp"
 alias oppdater-musikk="mpc update"
 alias vegvisir='ssh zrgst@vegvisir'
 alias mjolnir='ssh zrgst@mjolnir'
+alias torrent='tremc'
+alias torrent-stop='pkill transmission-daemon'
+alias torrent-start='transmission-daemon'
+alias mixer='alsamixer'
 # Emacs
 # dotfiles mappe
 alias dotfiles='emacsclient -c -a "" ~/dotfiles'
