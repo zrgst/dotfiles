@@ -56,6 +56,8 @@ alias bilde='feh -z'
 alias bilder="feh ."
 alias musikk="ncmpcpp"
 alias oppdater-musikk="mpc update"
+alias vegvisir='ssh zrgst@vegvisir'
+alias mjolnir='ssh zrgst@mjolnir'
 # Emacs
 # dotfiles mappe
 alias dotfiles='emacsclient -c -a "" ~/dotfiles'
