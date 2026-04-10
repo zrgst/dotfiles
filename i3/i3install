@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Enkel Arch-installasjon for ditt i3-oppsett
+# Kjør som vanlig bruker. Scriptet bruker sudo for pacman.
+# Dotfiles er ikke med her, siden de kommer fra GNU Stow-repoet ditt.
+
+packages=(
+  # WM / bar / launcher
+  i3-wm
+  i3status-rust
+  dmenu
+
+  # Terminal / compositor / screenshots
+  kitty
+  picom
+  flameshot
+
+  # Bakgrunn / varsler
+  feh
+  dunst
+
+  # PolicyKit / autostart / locking
+  mate-polkit
+  dex
+  xss-lock
+  i3lock
+
+  # Nettverkstray
+  network-manager-applet
+
+  # Musikk
+  mpd
+  mpc
+  ncmpcpp
+
+  # Lyd / mixer
+  alsa-utils
+  pipewire-pulse
+
+  # Diverse nyttige X11-verktøy
+  xorg-xrandr
+  xorg-xset
+)
+
+echo "==> Oppdaterer pakkedatabase"
+sudo pacman -Sy
+
+echo "==> Installerer i3-pakker"
+sudo pacman -S --needed "${packages[@]}"
+
+echo
+echo "Ferdig."
+echo "Neste steg:"
+echo "1. Stow dotfiles-repoet ditt"
+echo "2. Sjekk at NetworkManager er aktiv:"
+echo "   sudo systemctl enable --now NetworkManager"
+echo "3. Logg inn i TTY og start i3 slik du gjør på desktopen"

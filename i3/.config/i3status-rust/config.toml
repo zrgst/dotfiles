@@ -1,0 +1,50 @@
+icons_format = "{icon}"
+
+[theme]
+theme = "modern"
+
+[theme.overrides]
+idle_bg = "#1a1b26"
+idle_fg = "#c0caf5"
+
+info_bg = "#24283b"
+info_fg = "#7aa2f7"
+
+good_bg = "#24283b"
+good_fg = "#9ece6a"
+
+warning_bg = "#24283b"
+warning_fg = "#e0af68"
+
+critical_bg = "#24283b"
+critical_fg = "#f7768e"
+
+separator = "│"
+separator_bg = "#1a1b26"
+separator_fg = "#565f89"
+
+# Valgfritt: litt variasjon mellom blokkene
+alternating_tint_bg = "#11121a"
+alternating_tint_fg = "#00000000"
+
+[[block]]
+block = "focused_window"
+format = " $title.str(max_w:40) "
+
+[[block]]
+block = "cpu"
+interval = 2
+format = " CPU $utilization "
+
+[[block]]
+block = "memory"
+format = " RAM $mem_used_percents.eng(w:2) "
+
+[[block]]
+block = "sound"
+format = " VOL $volume "
+
+[[block]]
+block = "time"
+interval = 60
+format = " $timestamp.datetime(f:'%a %d %b | %H:%M') "
