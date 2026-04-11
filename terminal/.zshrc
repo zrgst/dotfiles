@@ -17,6 +17,8 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=5000
 SAVEHIST=10000
 
+TERMINAL="wezterm"
+
 # Zsh-history options som tilsvarer bash-oppsettet ditt best mulig
 setopt APPEND_HISTORY           # legg til historikk, ikke overskriv
 setopt INC_APPEND_HISTORY       # skriv historikk fortløpende

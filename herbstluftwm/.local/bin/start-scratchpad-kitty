@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Starter en dedikert kitty for scratchpad
+exec kitty --class scratchpad-kitty --title scratchpad-kitty

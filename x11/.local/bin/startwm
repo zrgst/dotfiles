@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Velg window-manager:"
+echo "1) dwm"
+echo "2) i3"
+echo "3) Herbstluftwm"
+printf "Valg: "
+read -r choice
+
+case "$choice" in
+  1) exec start-dwm ;;
+  2) exec start-i3;;
+  3) exec start-herbstluftwm;;
+  *) echo "Ugyldig valg"; exit 1 ;;
+esac
+
+

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Finn første kitty-scratchpad-vindu
+WIN_ID="$(xdotool search --class scratchpad-kitty 2>/dev/null | head -n 1)"
+
+# Hvis det ikke finnes, gjør ingenting
+[ -z "$WIN_ID" ] && exit 0
+
+# Er det synlig?
+if xwininfo -id "$WIN_ID" 2>/dev/null | grep -q "Map State: IsViewable"; then
+    # Skjul vinduet
+    xdotool windowunmap "$WIN_ID"
+else
+    # Vis og fokuser vinduet
+    xdotool windowmap "$WIN_ID"
+    sleep 0.03
+    xdotool windowraise "$WIN_ID"
+    xdotool windowactivate "$WIN_ID"
+fi

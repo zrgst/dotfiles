@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Last inn xresources
+[ -f ~/.Xresources  ] && xrdb -merge ~/.Xresources
+
+# Start WM
+exec herbstluftwm
