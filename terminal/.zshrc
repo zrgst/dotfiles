@@ -143,6 +143,8 @@ alias torrent-start='transmission-daemon'
 
 alias mixer='alsamixer'
 
+alias ff='fastfetch'
+
 # ---------------------------------------------------------
 # Emacs-aliaser
 # ---------------------------------------------------------

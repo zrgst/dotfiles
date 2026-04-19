@@ -3,5 +3,10 @@
 # Last inn xresources
 [ -f ~/.Xresources  ] && xrdb -merge ~/.Xresources
 
+xset s 0 0
+xset s off &
+xset -dpms &
+xset s noblank &
+
 # Start WM
 exec herbstluftwm

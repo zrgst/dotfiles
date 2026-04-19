@@ -14,7 +14,11 @@ hc unrule -F
 # --------------------------------------------------
 # Tags / workspaces
 # --------------------------------------------------
-for i in {1..9}; do
+hc rename default 1
+hc keybind "$Mod-1" use 1
+hc keybind "$Mod-Shift-1" move 1
+
+for i in {2..9}; do
     hc add "$i"
     hc keybind "$Mod-$i" use "$i"
     hc keybind "$Mod-Shift-$i" move "$i"
@@ -95,9 +99,10 @@ hc keybind "$Mod-Shift-Return" chain , move left , focus left
 # --------------------------------------------------
 # Launch / control
 # --------------------------------------------------
-hc keybind "$Mod-Return" spawn wezterm
-hc keybind "$Mod-p" spawn dmenu_run
+hc keybind "$Mod-Return" spawn kitty
+hc keybind "$Mod-p" spawn j4-dmenu-desktop
 hc keybind "$Mod-Shift-p" spawn zrgst_system_menu
+hc keybind "$Mod-Escape" spawn powermenu
 
 hc keybind "$Mod-w" close
 hc keybind "$Mod-Shift-q" quit
@@ -128,12 +133,16 @@ hc mousebind "$Mod-Button2" resize
 hc rule class=scratchpad-kitty \
     floating=on \
     floatplacement=none \
-    floating_geometry=1280x576+640+0
 
 # --------------------------------------------------
 # Autostart programs
 # --------------------------------------------------
 feh --randomize --bg-fill ~/Pictures/wallpapers/* &
+
+xset s 0 0
+xset s off
+xset -dpms
+xset s noblank
 
 pgrep -x dunst >/dev/null || dunst &
 pgrep -x flameshot >/dev/null || flameshot &

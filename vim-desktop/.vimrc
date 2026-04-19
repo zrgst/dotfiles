@@ -5,6 +5,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'dense-analysis/ale' " Linting og feilsøking
 Plug 'jiangmiao/auto-pairs' " Automatisk lukking av braces/parenteser
+" Govim for Go
+Plug 'govim/govim'
+autocmd BufWritePre *.go silent! normal! mz
+autocmd BufWritePre *.go :silent! call execute('normal! `z')
 
 call plug#end()
 

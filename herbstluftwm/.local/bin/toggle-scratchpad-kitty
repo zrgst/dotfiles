@@ -1,19 +1,101 @@
 #!/usr/bin/env bash
 
-# Finn første kitty-scratchpad-vindu
-WIN_ID="$(xdotool search --class scratchpad-kitty 2>/dev/null | head -n 1)"
+# ---------------------------------------------------------
+# Animert dropdown scratchpad for herbstluftwm + X11
+# ---------------------------------------------------------
+#
+# Krever:
+# - xdotool
+# - xwininfo
+#
+# Oppførsel:
+# - Hvis vinduet ikke finnes -> gjør ingenting
+# - Hvis det er skjult -> map, plasser over skjermen, animer ned
+# - Hvis det er synlig -> animer opp og skjul
+#
+# Tilpassbare verdier:
+# - bredde: 50%
+# - høyde: 40%
+# - topp-offset: 0
+# - step_px: hvor mange piksler per steg
+# - delay_s: pause mellom steg
+#
+# Mindre step + litt høyere delay = glattere, men tregere.
+# Større step + lav delay = raskere, men litt hakkete.
 
-# Hvis det ikke finnes, gjør ingenting
+WIN_ID="$(xdotool search --class scratchpad-kitty 2>/dev/null | head -n 1)"
 [ -z "$WIN_ID" ] && exit 0
 
-# Er det synlig?
+# Skjermstørrelse
+read -r SCREEN_W SCREEN_H < <(xdotool getdisplaygeometry)
+
+# Ønsket størrelse
+WIN_W=$(( SCREEN_W * 50 / 100 ))
+WIN_H=$(( SCREEN_H * 40 / 100 ))
+
+# Endelig plassering
+TARGET_X=$(( (SCREEN_W - WIN_W) / 2 ))
+TARGET_Y=0
+
+# Startposisjon over toppen av skjermen
+HIDDEN_Y=$(( -WIN_H ))
+
+# Animasjon
+STEP_PX=48
+DELAY_S=0.004
+
+# Funksjon: animer vindu fra start_y til end_y
+animate_y() {
+    local win_id="$1"
+    local x="$2"
+    local start_y="$3"
+    local end_y="$4"
+    local step="$5"
+    local delay="$6"
+
+    if [ "$start_y" -lt "$end_y" ]; then
+        # Nedover
+        local y
+        y="$start_y"
+        while [ "$y" -lt "$end_y" ]; do
+            xdotool windowmove "$win_id" "$x" "$y"
+            y=$(( y + step ))
+            sleep "$delay"
+        done
+    else
+        # Oppover
+        local y
+        y="$start_y"
+        while [ "$y" -gt "$end_y" ]; do
+            xdotool windowmove "$win_id" "$x" "$y"
+            y=$(( y - step ))
+            sleep "$delay"
+        done
+    fi
+
+    # Sørg for nøyaktig sluttposisjon
+    xdotool windowmove "$win_id" "$x" "$end_y"
+}
+
+# Er vinduet synlig?
 if xwininfo -id "$WIN_ID" 2>/dev/null | grep -q "Map State: IsViewable"; then
-    # Skjul vinduet
+    # Animer opp og skjul
+    CURRENT_Y="$(xwininfo -id "$WIN_ID" | awk '/Absolute upper-left Y:/ {print $4}')"
+    animate_y "$WIN_ID" "$TARGET_X" "$CURRENT_Y" "$HIDDEN_Y" "$STEP_PX" "$DELAY_S"
     xdotool windowunmap "$WIN_ID"
 else
-    # Vis og fokuser vinduet
+    # Vis vinduet igjen
     xdotool windowmap "$WIN_ID"
     sleep 0.03
+
+    # Sett størrelse før animasjon
+    xdotool windowsize "$WIN_ID" "$WIN_W" "$WIN_H"
+
+    # Start over toppen
+    xdotool windowmove "$WIN_ID" "$TARGET_X" "$HIDDEN_Y"
     xdotool windowraise "$WIN_ID"
     xdotool windowactivate "$WIN_ID"
+
+    # Animer ned
+    animate_y "$WIN_ID" "$TARGET_X" "$HIDDEN_Y" "$TARGET_Y" "$STEP_PX" "$DELAY_S"
 fi
