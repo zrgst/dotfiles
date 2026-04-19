@@ -1,0 +1,8 @@
+# user data (DO NOT TRACK)
+.local/share/*
+zrgst/.local/share/Steam/
+zrgst/.local/share/flatpak/
+zrgst/.local/share/PrismLauncher/
+zrgst/.local/share/icons/
+zrgst/.local/share/vulkan/
+zrgst/.local/share/applications/

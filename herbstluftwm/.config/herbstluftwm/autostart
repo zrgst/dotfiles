@@ -100,7 +100,11 @@ hc keybind "$Mod-Shift-Return" chain , move left , focus left
 # Launch / control
 # --------------------------------------------------
 hc keybind "$Mod-Return" spawn kitty
+<<<<<<< Updated upstream
 hc keybind "$Mod-p" spawn j4-dmenu-desktop
+=======
+hc keybind "$Mod-p" spawn dmenu_run
+>>>>>>> Stashed changes
 hc keybind "$Mod-Shift-p" spawn zrgst_system_menu
 hc keybind "$Mod-Escape" spawn powermenu
 
@@ -146,7 +150,7 @@ xset s noblank
 
 pgrep -x dunst >/dev/null || dunst &
 pgrep -x flameshot >/dev/null || flameshot &
-pgrep -x mpd >/dev/null || mpd &
+#pgrep -x mpd >/dev/null || mpd &
 
 pkill picom 2>/dev/null
 picom -b &
